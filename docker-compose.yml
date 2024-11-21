@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: .
+    container_name: sicol-backend
+    ports:
+      - "9000:9000"   # Mapea el puerto del contenedor al puerto del host
+    env_file:
+      - .env
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
