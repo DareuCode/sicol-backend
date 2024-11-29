@@ -4,7 +4,6 @@ import com.services.sicol.app.dto.GeneralTypeDTO;
 import com.services.sicol.app.service.GeneralTypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,9 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/v1/settings-data")
 public class GeneralTypeController {
-    private final Logger logger= LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    private GeneralTypeService generalTypeService;
+    private static final Logger logger= LoggerFactory.getLogger(GeneralTypeController.class);
+    private final GeneralTypeService generalTypeService;
+
+    public GeneralTypeController(GeneralTypeService generalTypeService) {
+        this.generalTypeService = generalTypeService;
+    }
 
     @GetMapping()
     public List<GeneralTypeDTO> getAllGeneralTypes() {

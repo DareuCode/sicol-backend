@@ -5,24 +5,27 @@ import com.services.sicol.app.model.GeneralType;
 import com.services.sicol.app.repository.GeneralTypeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
 public class GeneralTypeService {
-    private final Logger logger= LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger= LoggerFactory.getLogger(GeneralTypeService.class);
 
-    @Autowired
-    private GeneralTypeRepository generalTypeRepository;
+    private final GeneralTypeRepository generalTypeRepository;
+
+    public GeneralTypeService(GeneralTypeRepository generalTypeRepository) {
+        this.generalTypeRepository = generalTypeRepository;
+    }
 
     public List<GeneralTypeDTO>  getAllGeneralTypes() {
         try {
             return GeneralTypeDTO.fromEntities(generalTypeRepository.findAll());
         } catch(Exception e) {
             logger.error("Error: ", e);
-            return (List<GeneralTypeDTO>) new GeneralTypeDTO();
+            return Collections.emptyList();
         }
     }
 
