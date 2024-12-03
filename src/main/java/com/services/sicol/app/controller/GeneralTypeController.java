@@ -4,7 +4,13 @@ import com.services.sicol.app.dto.GeneralTypeDTO;
 import com.services.sicol.app.service.GeneralTypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
@@ -30,8 +36,13 @@ public class GeneralTypeController {
 
     @PostMapping()
     public GeneralTypeDTO creatNewGeneralType(@RequestBody GeneralTypeDTO generalTypeDTO) {
-        logger.info("DTO");
-        logger.info(generalTypeDTO.toString());
+        logger.info("Creating new general type");
+        return generalTypeService.createNewGeneralType(generalTypeDTO);
+    }
+
+    @PutMapping()
+    public GeneralTypeDTO updateGeneralType(@RequestBody GeneralTypeDTO generalTypeDTO) {
+        logger.info("Update de general type");
         return generalTypeService.createNewGeneralType(generalTypeDTO);
     }
 }

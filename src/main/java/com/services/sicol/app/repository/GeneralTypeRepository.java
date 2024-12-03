@@ -8,4 +8,5 @@ import java.util.List;
 public interface GeneralTypeRepository extends JpaRepository<GeneralType, Integer> {
 
     List<GeneralType> findByType(Integer type);
+    GeneralType findBySubtype(Integer subtype);
 }

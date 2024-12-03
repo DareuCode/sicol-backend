@@ -23,6 +23,7 @@ public class GeneralTypeDTO {
     private Date createdAt;
     private Date updatedAt;
 
+    // method to convert from entity to DTO
     public static GeneralTypeDTO formEntity(GeneralType generalType) {
         return GeneralTypeDTO.builder()
                 .subtype(generalType.getSubtype())
@@ -35,10 +36,21 @@ public class GeneralTypeDTO {
                 .build();
     }
 
+    // method to convert a list of entities into a list of DTOs
     public static List<GeneralTypeDTO> fromEntities(List<GeneralType> generalTypes) {
         return generalTypes.stream()
                 .map(GeneralTypeDTO::formEntity)
                 .collect(Collectors.toList());
+    }
+
+    // method to convert from DTO to entity
+    public GeneralType toEntity() {
+        return GeneralType.builder()
+                .subclass(this.subclass)
+                .subtype(this.subtype)
+                .type(this.type)
+                .category(this.category)
+                .build();
     }
 
     @Override

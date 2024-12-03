@@ -24,7 +24,7 @@ public class GeneralTypeService {
         try {
             return GeneralTypeDTO.fromEntities(generalTypeRepository.findAll());
         } catch(Exception e) {
-            logger.error("Error: ", e);
+            logger.error(e.getMessage());
             return Collections.emptyList();
         }
     }
@@ -42,5 +42,9 @@ public class GeneralTypeService {
         logger.info(generalType.toString());
         GeneralType response = generalTypeRepository.save(generalType);
         return GeneralTypeDTO.formEntity(response);
+    }
+
+    public GeneralTypeDTO updateGeneralType(GeneralTypeDTO generalTypeDTO) {
+        return new GeneralTypeDTO();
     }
 }
